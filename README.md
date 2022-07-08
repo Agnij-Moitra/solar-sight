@@ -1,1 +1,1 @@
-# solar-energy-pridictions
+# solar-energy-predictions
