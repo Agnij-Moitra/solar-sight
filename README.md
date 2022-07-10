@@ -1,1 +1,1 @@
-# solar-energy-predictions
+# Solar-Sight
