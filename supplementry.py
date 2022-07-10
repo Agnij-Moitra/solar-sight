@@ -25,7 +25,7 @@ def get_preds(location):
     Returns:
         Float: Estimated solar energy prduced in watt
     """
-    data = get_data(get_coordinates("Delhi"))
+    data = get_data(get_coordinates(location))
     return get_energy_preds(data[0], data[1], data[2], data[3], data[4])
 
 def get_energy_preds(distance_to_solar_noon, wind_direction, wind_speed, humidity, average_pressure):
@@ -55,6 +55,7 @@ def get_coordinates(location):
         List[latitude, longitude, distance-tosolar-noon, current-time]
     """
     response = requests.get(f"https://api.ipgeolocation.io/astronomy?apiKey=4c68beef16a44af1925b158adea34e8a&location={location}").json()
+    # print(response)
     return [response["location"]["latitude"], response["location"]["longitude"], response['solar_noon'], response["current_time"][:5]]
 
 
