@@ -1,19 +1,11 @@
-from flask import Flask, jsonify, request
-# https://www.geeksforgeeks.org/python-build-a-rest-api-using-flask/
+from flask import Flask, jsonify, Request
+from supplementry import get_preds
 
 app = Flask(__name__)
 
-@app.route('/', methods = ['GET', 'POST'])
-def home():
-    if(request.method == 'GET'):
-  
-        data = "hello world"
-        return jsonify({'data': data})
-
-@app.route('/home/<int:num>', methods = ['GET'])
-def disp(num):
-  
-    return jsonify({'data': num**2})
+@app.route('/<location>', methods = ['GET'])
+def index(location):
+    return jsonify({'estimatedElectricity': float(get_preds(location)), 'unit': 'watts'})
   
 if __name__ == '__main__':
   
