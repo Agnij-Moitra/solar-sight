@@ -11,8 +11,6 @@ def index():
 
 @app.route('/api/<location>', methods = ['GET'])
 def api(location):
-    # print(location)
-    # print(get_preds(location))
     return jsonify({'estimatedElectricity': float(get_preds(str(location))), 'unit': 'watts'})
   
 if __name__ == '__main__':
