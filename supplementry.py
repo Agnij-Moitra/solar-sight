@@ -86,7 +86,3 @@ def time_diff(t_noon, t_current):
         t_current (time.struct_time): Current Time
     """
     return radians((((12 - float(t_current[0])) * 60) + (float(t_noon[1]) - float(t_current[1]))) / 60)
-    
-if __name__ == "__main__":
-    print(get_preds("Delhi"))
-    

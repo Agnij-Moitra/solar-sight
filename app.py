@@ -3,9 +3,16 @@ from supplementry import get_preds
 
 app = Flask(__name__)
 
-@app.route('/<location>', methods = ['GET'])
-def index(location):
-    return jsonify({'estimatedElectricity': float(get_preds(location)), 'unit': 'watts'})
+
+@app.route("/", methods = ['GET'])
+def index():
+    return "https://github.com/Agnij-Moitra/solar-sight"
+
+
+@app.route('/api/<location>', methods = ['GET'])
+def api(location):
+    print(get_preds(location))
+    return jsonify({'estimatedElectricity': float(get_preds(str(location))), 'unit': 'watts'})
   
 if __name__ == '__main__':
   
