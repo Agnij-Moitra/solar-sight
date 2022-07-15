@@ -7,9 +7,9 @@ app = Flask(__name__)
 def index():
     return render_template("./index.html")
 
-@app.route('/api/<location>', methods = ['GET'])
-def api(location):
-    return jsonify({'estimatedElectricity': float(get_preds(str(location))), 'unit': 'watts'})
+@app.route('/api/', methods = ['GET'])
+def api():
+    return jsonify({'estimatedElectricity': float(get_preds(str(request.args.get('place')))), 'unit': 'watts'})
   
 if __name__ == '__main__':
     app.run(debug = True)
