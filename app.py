@@ -9,7 +9,7 @@ def index():
 
 @app.route('/api/', methods = ['GET'])
 def api():
-    return jsonify({'estimatedElectricity': float(get_preds(str(request.args.get('place')))), 'unit': 'watts'})
+    return jsonify({'estimatedElectricity': float(get_preds(str(Request.args.get('place')))), 'unit': 'watts'})
   
 if __name__ == '__main__':
     app.run(debug = True)
