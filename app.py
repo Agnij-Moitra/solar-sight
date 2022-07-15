@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, Request, render_template
 from supplementry import get_preds
-from geopy.geocoders import Nominatim
 
 app = Flask(__name__)
 
