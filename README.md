@@ -1,9 +1,5 @@
-# Solar-Sight
+# solarsight
 
-## Usage:
-```
-https://solar-sight.herokuapp.com/api/<location>
-```
 A new Flutter project.
 
 ## Getting Started
