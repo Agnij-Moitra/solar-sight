@@ -38,4 +38,3 @@ wcwidth==0.2.5
 Werkzeug==2.1.2
 xgboost==1.6.1
 zipp==3.8.0
-geopy
