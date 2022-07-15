@@ -11,7 +11,7 @@ def index():
 
 @app.route('/latlot', methods = ['GET'])
 def api():
-    location = geolocator.reverse(request.argsto_dict().get("place")).raw['address'].get('state', '')
+    location = geolocator.reverse(Request.argsto_dict().get("place")).raw['address'].get('state', '')
     return jsonify({'estimatedElectricity': float(get_preds(str(location))), 'unit': 'watts'})
 
 @app.route('/api/<location>', methods = ['GET'])
