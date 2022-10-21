@@ -41,9 +41,9 @@ def get_energy_preds(distance_to_solar_noon, wind_direction, wind_speed, humidit
     Returns:
         Float: Amount of electricity generated
     """
-    zipped = list(zip([distance_to_solar_noon], [wind_direction], [wind_speed], [humidity], [average_pressure]))
-    df_ = pd.DataFrame(zipped, columns=KEYS)
-    return imported_model.predict(df_)[0]
+    return imported_model.predict(pd.DataFrame(
+        list(zip([distance_to_solar_noon], [wind_direction], [wind_speed], [humidity], [average_pressure])), 
+        columns=KEYS))[0]
 
 def get_coordinates(location):
     """uses ipgeolocation api to find coordinates and solarr noon and currenct time
@@ -55,7 +55,6 @@ def get_coordinates(location):
         List[latitude, longitude, distance-tosolar-noon, current-time]
     """
     response = requests.get(f"https://api.ipgeolocation.io/astronomy?apiKey=4c68beef16a44af1925b158adea34e8a&location={location}").json()
-    # print(response)
     return [response["location"]["latitude"], response["location"]["longitude"], response['solar_noon'], response["current_time"][:5]]
 
 
@@ -71,12 +70,10 @@ def get_data(info):
     response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?lat={info[0]}&lon={info[1]}&appid=57c061cb0881c2d71bf9c2275d883d28&units=metric")
     if response.status_code == 200:
         res = response.json()
-        t_noon = info[2].strip(":")
-        t_current = info[3].strip(":")
-        data = [time_diff(t_noon, t_current), res["wind"]["deg"], res["wind"]["speed"], res['main']['pressure'], res['main']['humidity']]
+        data = [time_diff(info[2].strip(":"), info[3].strip(":")), res["wind"]["deg"], res["wind"]["speed"], res['main']['pressure'], res['main']['humidity']]
         return data
     else:
-        print(f"Hello person, there's a {response.status_code} error with your request")
+        return response.status_code
             
 
 def time_diff(t_noon, t_current):
